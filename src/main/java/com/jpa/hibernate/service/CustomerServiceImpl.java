@@ -1,0 +1,40 @@
+package com.jpa.hibernate.service;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.jpa.hibernate.models.Customer;
+import com.jpa.hibernate.repo.CustomerDao;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+	private CustomerDao customerDao;
+
+	public CustomerServiceImpl(CustomerDao customerDao) {
+		super();
+		this.customerDao = customerDao;
+	}
+
+	@Override
+	@Transactional
+	public Iterable<Customer> getAllCustomer() {
+		// TODO Auto-generated method stub
+		return customerDao.findAll();
+	}
+
+	@Override
+	@Transactional
+	public Optional<Customer> findCustomerById(String id) {
+		// TODO Auto-generated method stub
+		return customerDao.findById(id);
+	}
+
+	@Override
+	public Optional<Customer> findCustomerByName(String name) {
+		// TODO Auto-generated method stub
+		return customerDao.findCustomerByCustomerName(name);
+	}
+
+}
