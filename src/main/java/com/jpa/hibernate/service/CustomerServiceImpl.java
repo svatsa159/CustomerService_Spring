@@ -1,6 +1,7 @@
 package com.jpa.hibernate.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +33,27 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	@Transactional
 	public Optional<Customer> findCustomerByName(String name) {
 		// TODO Auto-generated method stub
 		return customerDao.findCustomerByCustomerName(name);
+	}
+
+	@Override
+	@Transactional
+	public Customer createCustomer(String name) {
+		// TODO Auto-generated method stub
+		Customer customer = new Customer(UUID.randomUUID().toString(), name, 0);
+		customerDao.save(customer);
+		return customer;
+	}
+
+	@Override
+	public void deleteCustomer(String id) {
+		// TODO Auto-generated method stub
+		Customer customer = findCustomerById(id).get();
+		customerDao.delete(customer);
+
 	}
 
 }

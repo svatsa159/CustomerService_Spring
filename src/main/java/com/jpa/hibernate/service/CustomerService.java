@@ -10,4 +10,8 @@ public interface CustomerService {
 	public Optional<Customer> findCustomerById(String id);
 
 	public Optional<Customer> findCustomerByName(String name);
+
+	public Customer createCustomer(String name);
+
+	public void deleteCustomer(String id);
 }
